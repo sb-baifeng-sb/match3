@@ -2,21 +2,21 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "level.h"
+#include "Level.h"
 
 #define MAP_INDEX(x, y, w) (y*w+x)
 
-level::level():w(0), h(0), max_id(0) {
+Level::Level():w(0), h(0), max_id(0) {
     this->layer(FLOOR).clear();
     this->layer(TILE).clear();
 }
 
-void level::clear() {
+void Level::clear() {
     this->layer(FLOOR).clear();
     this->layer(TILE).clear();
 }
 
-void level::resize(int w, int h) {
+void Level::resize(int w, int h) {
     this->w = w;
     this->h = h;
     int size = w * h;
@@ -27,37 +27,37 @@ void level::resize(int w, int h) {
     }
 }
 
-void level::setMaxId(int id) {
+void Level::setMaxId(int id) {
     this->max_id = id;
 }
 
-void level::set(LAYER_INDEX index, int x, int y, entt::entity e) {
+void Level::set(LAYER_INDEX index, int x, int y, entt::entity e) {
     if (x < 0 || x >= this->w || y < 0 || y >= this->h) {
         return;
     }
     this->layer(index)[MAP_INDEX(x, y, this->w)] = e;
 }
 
-entt::entity level::get(LAYER_INDEX index, int x, int y) const {
+entt::entity Level::get(LAYER_INDEX index, int x, int y) const {
     if (x < 0 || x >= this->w || y < 0 || y >= this->h) {
         return entt::null;
     }
     return this->layer(index)[MAP_INDEX(x, y, this->w)];
 }
 
-level::Layer& level::layer(LAYER_INDEX index) {
+Level::Layer& Level::layer(LAYER_INDEX index) {
     return mLayers[int(index)];
 }
 
-level::Layer const& level::layer(LAYER_INDEX index) const {
+Level::Layer const& Level::layer(LAYER_INDEX index) const {
     return mLayers[int(index)];
 }
 
-void level::loadlevel(std::string const& fileName) {
+void Level::loadlevel(std::string const& fileName) {
 
 }
 
-void level::output(OutputProc proc) {
+void Level::output(OutputProc proc) {
     int size = this->w * this->h;
     std::vector<int> arr;
     arr.reserve(size);
@@ -69,14 +69,14 @@ void level::output(OutputProc proc) {
     }
 }
 
-int level::makeGemId() const {
+int Level::makeGemId() const {
     return rand()%this->max_id+1;
 }
 
-int level::getMapWidth() const {
+int Level::getMapWidth() const {
     return this->w;
 }
 
-int level::getMapHeight() const {
+int Level::getMapHeight() const {
     return this->h;
 }

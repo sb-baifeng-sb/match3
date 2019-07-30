@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class gems {
+class Gems {
 public:
     enum {
         ID_MAX = 7,
@@ -22,7 +22,7 @@ public:
     typedef sf::Texture texture;
     typedef sf::Sprite sprite;
 public:
-    gems();
+    Gems();
     void loadGems(std::string const& fileName);
     rect const& getGemFrame(int id, int index = 0) const;
     texture const& getTexture() const;

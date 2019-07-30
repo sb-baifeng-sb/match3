@@ -5,18 +5,18 @@
 #ifndef APP_CONTEXT_H
 #define APP_CONTEXT_H
 
-#include <core/level.h>
-#include <core/render.h>
-#include <core/input.h>
-#include <core/gems.h>
+#include <core/Level.h>
+#include <core/Render.h>
+#include <core/Input.h>
+#include <core/Gems.h>
 
 class context {
 public:
     entt::registry entity;
-    level level;
-    gems gems;
-    input input;
-    render render;
+    Level level;
+    Gems gems;
+    Input input;
+    Render render;
     bool check_link;
 };
 

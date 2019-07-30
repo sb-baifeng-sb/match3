@@ -12,12 +12,12 @@
 typedef sf::Drawable Drawable;
 typedef std::function<void(Drawable&)> DrawFN;
 
-class render {
+class Render {
 public:
     typedef sf::RenderWindow Window;
 public:
-    render();
-    ~render();
+    Render();
+    ~Render();
 public:
     void init(unsigned int w, unsigned int h);
     Window* window();

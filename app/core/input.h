@@ -12,11 +12,11 @@
 typedef sf::Event InputEvent;
 typedef std::function<void(InputEvent& event)> InputProc;
 
-class input {
+class Input {
 public:
     typedef sf::RenderWindow Window;
 public:
-    input();
+    Input();
     void setWindow(Window* window);
     void handleEvent(InputProc proc);
 private:

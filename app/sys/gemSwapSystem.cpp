@@ -12,8 +12,8 @@ void updateGemSwap(context& c, int ms) {
     auto& entity = c.entity;
     float dt = ms / 1000.0f;
     entity.view<GemSwaping, Position, Tile, TileEnd>().each([&](auto e, GemSwaping const& swaping, Position& pos, Tile& tile, TileEnd& end) {
-        float end_x = end.x * gems::GEM_WIDTH + gems::GEM_WIDTH * 0.5f;
-        float end_y = end.y * gems::GEM_HEIGHT + gems::GEM_HEIGHT * 0.5f;
+        float end_x = end.x * Gems::GEM_WIDTH + Gems::GEM_WIDTH * 0.5f;
+        float end_y = end.y * Gems::GEM_HEIGHT + Gems::GEM_HEIGHT * 0.5f;
         float v = 100.0f * (dt / 0.3f);
         float x_ok = false, y_ok = false;
 
@@ -55,7 +55,7 @@ void updateGemSwap(context& c, int ms) {
             Tile temp = tile;
             tile.x = end.x; tile.y = end.y;
             end.x = temp.x; end.y = temp.y;
-            c.level.set(level::TILE, tile.x, tile.y, e);
+            c.level.set(Level::TILE, tile.x, tile.y, e);
         }
     });
 }
@@ -64,8 +64,8 @@ void updateGemSwapReverse(context& c, int ms) {
     auto& entity = c.entity;
     float dt = ms / 1000.0f;
     entity.view<GemReverseSwaping, Position, Tile, TileEnd>().each([&](auto e, GemReverseSwaping const& swaping, Position& pos, Tile& tile, TileEnd& end) {
-        float end_x = end.x * gems::GEM_WIDTH + gems::GEM_WIDTH * 0.5f;
-        float end_y = end.y * gems::GEM_HEIGHT + gems::GEM_HEIGHT * 0.5f;
+        float end_x = end.x * Gems::GEM_WIDTH + Gems::GEM_WIDTH * 0.5f;
+        float end_y = end.y * Gems::GEM_HEIGHT + Gems::GEM_HEIGHT * 0.5f;
         float v = 100.0f * (dt / 0.3f);
         float x_ok = false, y_ok = false;
 
@@ -107,7 +107,7 @@ void updateGemSwapReverse(context& c, int ms) {
             Tile temp = tile;
             tile.x = end.x; tile.y = end.y;
             end.x = temp.x; end.y = temp.y;
-            c.level.set(level::TILE, tile.x, tile.y, e);
+            c.level.set(Level::TILE, tile.x, tile.y, e);
         }
     });
 }

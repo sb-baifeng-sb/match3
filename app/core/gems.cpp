@@ -2,9 +2,9 @@
 // Created by baifeng on 2019-07-29.
 //
 
-#include "gems.h"
+#include "Gems.h"
 
-gems::gems() {
+Gems::Gems() {
     int xpos[ID_MAX] = {0, 64, 128, 192, 256, 320, 384};
     int ypos[INDEX_MAX] = {0, 64, 128};
     for (int i = 0; i < ID_MAX; ++i) {
@@ -16,14 +16,14 @@ gems::gems() {
     }
 }
 
-void gems::loadGems(std::string const& fileName) {
+void Gems::loadGems(std::string const& fileName) {
     mTex.loadFromFile(fileName);
     mTex.setSmooth(true);
     mSp.setTexture(mTex);
     mSp.setOrigin(GEM_WIDTH*0.5f, GEM_HEIGHT*0.5f);
 }
 
-gems::rect const& gems::getGemFrame(int id, int index) const {
+Gems::rect const& Gems::getGemFrame(int id, int index) const {
     if (id <= 0 || id > ID_MAX) {
         id = 1;
     }
@@ -33,10 +33,10 @@ gems::rect const& gems::getGemFrame(int id, int index) const {
     return mFrames[id-1][index];
 }
 
-gems::texture const& gems::getTexture() const {
+Gems::texture const& Gems::getTexture() const {
     return mTex;
 }
 
-gems::sprite& gems::getSprite() {
+Gems::sprite& Gems::getSprite() {
     return mSp;
 }

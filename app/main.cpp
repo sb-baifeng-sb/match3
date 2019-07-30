@@ -44,10 +44,10 @@ int main() {
 
     // 初始化关卡和画面
     srand(time(nullptr));
-    app.level.output([&](level::LAYER_INDEX index, int x, int y, int id) {
+    app.level.output([&](Level::LAYER_INDEX index, int x, int y, int id) {
         //printf("x=%d y=%d id=%d\n", x, y, id);
-        float _x = x * gems::GEM_WIDTH + gems::GEM_WIDTH*0.5f;
-        float _y = y * gems::GEM_HEIGHT + gems::GEM_HEIGHT*0.5f;
+        float _x = x * Gems::GEM_WIDTH + Gems::GEM_WIDTH*0.5f;
+        float _y = y * Gems::GEM_HEIGHT + Gems::GEM_HEIGHT*0.5f;
         auto e = createGem(app.entity, id, Position{_x, _y}, Tile{x, y});
         app.level.set(index, x, y, e);
     });

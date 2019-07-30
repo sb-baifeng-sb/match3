@@ -39,7 +39,7 @@ void procGemsFall(context& c, gem_sets const& gems) {
     for (auto iter = gems.begin(); iter != gems.end(); iter++) {
         int hole = 0;
         for (int i = c.level.getMapHeight()-1; i >= 0; i--) {
-            auto e = c.level.get(level::TILE, iter->first, i);
+            auto e = c.level.get(Level::TILE, iter->first, i);
             if (e == entt::null) {
                 continue;
             }
@@ -61,8 +61,8 @@ void procNewGems(context& c, gem_sets const& gems) {
         for (int i = 0; i < iter->second.size(); ++i) {
             auto id = c.level.makeGemId();
             auto e = createGem(entity, id, Position{
-                gems::GEM_WIDTH*0.5f+iter->first*gems::GEM_WIDTH,
-                -gems::GEM_HEIGHT*0.5f+i*(-gems::GEM_HEIGHT)
+                Gems::GEM_WIDTH*0.5f+iter->first*Gems::GEM_WIDTH,
+                -Gems::GEM_HEIGHT*0.5f+i*(-Gems::GEM_HEIGHT)
                 }, Tile{iter->first, -1-i});
             entity.assign<Falling>(e); // 下降中
             entity.assign<TileEnd>(e, int(iter->first), int(iter->second.size()-i-1));
@@ -91,7 +91,7 @@ void updateDeadGems(context& c) {
     for (int i = 0; i < deadGems.size(); ++i) {
         auto e = deadGems[i];
         auto const& tile = entity.get<Tile>(e);
-        c.level.set(level::TILE, tile.x, tile.y, entt::null);
+        c.level.set(Level::TILE, tile.x, tile.y, entt::null);
         entity.destroy(e);
     }
 }

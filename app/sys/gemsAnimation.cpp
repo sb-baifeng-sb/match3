@@ -13,7 +13,7 @@ void updateGemsSelectAni(context& c, int ms) {
         sprite.step += ms;
         if (sprite.step >= 200) {
             sprite.step = 0;
-            sprite.index = ++sprite.index >= gems::INDEX_MAX ? 0 : sprite.index;
+            sprite.index = ++sprite.index >= Gems::INDEX_MAX ? 0 : sprite.index;
         }
     });
     entity.view<GemSwapFinish, GemSprite>().each([&](auto e, GemSwapFinish const& standby, GemSprite& sprite) {

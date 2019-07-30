@@ -9,7 +9,7 @@
 #include <functional>
 #include <entt/entt.hpp>
 
-class level {
+class Level {
 public:
     enum LAYER_INDEX {
         FLOOR = 0,
@@ -18,7 +18,7 @@ public:
     typedef std::vector<entt::entity> Layer;
     typedef std::function<void(LAYER_INDEX index, int x, int y, int id)>  OutputProc;
 public:
-    level();
+    Level();
 public:
     void clear();
     void resize(int w, int h);

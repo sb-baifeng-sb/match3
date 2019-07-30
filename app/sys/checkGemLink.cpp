@@ -29,7 +29,7 @@ bool _isLink(context& c, entt::entity e, Tile* style, int styleSize) {
     int count = 0;
     for (int i = 0; i < styleSize; ++i) {
         auto const& step = style[i];
-        auto next = c.level.get(level::TILE, tile.x + step.x, tile.y + step.y);
+        auto next = c.level.get(Level::TILE, tile.x + step.x, tile.y + step.y);
         if (next == entt::null) {
             continue;
         }
@@ -48,7 +48,7 @@ void _setLink(context& c, entt::entity e, Tile* style, int styleSize) {
     auto const& tile = entity.get<Tile>(e);
     for (int i = 0; i < styleSize; ++i) {
         auto const& step = style[i];
-        auto next = c.level.get(level::TILE, tile.x + step.x, tile.y + step.y);
+        auto next = c.level.get(Level::TILE, tile.x + step.x, tile.y + step.y);
         if (next == entt::null) {
             continue;
         }
@@ -63,7 +63,7 @@ void checkGemLink(context& c) {
     auto& entity = c.entity;
     for (int x = 0; x < c.level.getMapWidth(); ++x) {
         for (int y = 0; y < c.level.getMapHeight(); ++y) {
-            auto e = c.level.get(level::TILE, x, y);
+            auto e = c.level.get(Level::TILE, x, y);
             if (e == entt::null) {
                 continue;
             }
@@ -95,7 +95,7 @@ void checkSwapGemLink(context& c) {
     entity.view<GemSwapFinish, Tile, TileEnd>().each([&](auto e, GemSwapFinish const& finish, Tile const& tile, TileEnd const& end) {
         for (int i = 0; i < 5; ++i) {
             auto& curr = _swapCheckLink[i];
-            auto next = c.level.get(level::TILE, tile.x + curr.x, tile.y + curr.y);
+            auto next = c.level.get(Level::TILE, tile.x + curr.x, tile.y + curr.y);
             if (next == entt::null) {
                 continue;
             }

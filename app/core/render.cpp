@@ -2,16 +2,16 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "render.h"
+#include "Render.h"
 
-render::render():_window(nullptr), w(0), h(0) {
+Render::Render():_window(nullptr), w(0), h(0) {
 }
 
-render::~render() {
+Render::~Render() {
     delete(_window);
 }
 
-void render::init(unsigned int w, unsigned int h) {
+void Render::init(unsigned int w, unsigned int h) {
     if (_window == nullptr) {
         // Create the window of the application
         _window = new sf::RenderWindow(sf::VideoMode(w, h, 32), "demo", sf::Style::Titlebar | sf::Style::Close);
@@ -22,30 +22,30 @@ void render::init(unsigned int w, unsigned int h) {
     }
 }
 
-render::Window* render::window() {
+Render::Window* Render::window() {
     return _window;
 }
 
-bool render::alive() {
+bool Render::alive() {
     return _window->isOpen();
 }
 
-void render::begin(int r, int g, int b, int a) {
+void Render::begin(int r, int g, int b, int a) {
     _window->clear(sf::Color(r, g, b, a));
 }
 
-void render::draw(Drawable& target) {
+void Render::draw(Drawable& target) {
     _window->draw(target);
 }
 
-void render::end() {
+void Render::end() {
     _window->display();
 }
 
-int render::screenWidth() const {
+int Render::screenWidth() const {
     return this->w;
 }
 
-int render::screenHeight() const {
+int Render::screenHeight() const {
     return this->h;
 }
