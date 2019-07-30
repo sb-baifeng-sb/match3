@@ -21,4 +21,4 @@
 
 目前已知的问题：宝石下落系统比较脆弱，随着游戏的过程中，会出现画面出错和崩溃，不过这不影响这个项目作为一个ECS模式的源码范例。
 
-![screenshot](./screenshot.jpg)
+<img src="./screenshot.jpg" width="50%">
