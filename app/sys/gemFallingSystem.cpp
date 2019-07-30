@@ -7,7 +7,7 @@
 #include <struct/state.h>
 #include <struct/position.h>
 #include <struct/tile.h>
-#include <core/Gems.h>
+#include <core/gems.h>
 #include <sys/checkGemLink.h>
 
 void gemFallingSystem(context& c, int ms) {

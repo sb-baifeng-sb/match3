@@ -2,7 +2,7 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "Render.h"
+#include "render.h"
 
 Render::Render():_window(nullptr), w(0), h(0) {
 }

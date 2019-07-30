@@ -2,7 +2,7 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "Level.h"
+#include "level.h"
 
 #define MAP_INDEX(x, y, w) (y*w+x)
 

@@ -5,10 +5,10 @@
 #ifndef APP_CONTEXT_H
 #define APP_CONTEXT_H
 
-#include <core/Level.h>
-#include <core/Render.h>
-#include <core/Input.h>
-#include <core/Gems.h>
+#include <core/level.h>
+#include <core/render.h>
+#include <core/input.h>
+#include <core/gems.h>
 
 class context {
 public:
