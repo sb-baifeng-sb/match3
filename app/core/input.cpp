@@ -2,8 +2,8 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "input.h"
 #include <assert.h>
+#include "Input.h"
 
 Input::Input():_window(nullptr) {
 

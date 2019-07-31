@@ -8,6 +8,5 @@
 class context;
 void updateGemSwap(context& c, int ms);
 void updateGemSwapReverse(context& c, int ms);
-void updateGemSwapEnd(context& c);
 
 #endif //APP_GEMSWAPSYSTEM_H

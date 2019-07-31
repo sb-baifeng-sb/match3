@@ -7,10 +7,14 @@
 #include <struct/gem.h>
 #include <struct/position.h>
 #include <struct/scale.h>
+#include <struct/state.h>
 
 void renderGems(context& c) {
     auto& entity = c.entity;
     entity.view<Gem, Position, Scale, GemSprite>().each([&](auto e, Gem& gem, Position& pos, Scale& scale, GemSprite& sp) {
+        if (entity.has<Dead>(e)) {
+            return;
+        }
         auto& sprite = c.gems.getSprite();
         auto& rect = c.gems.getGemFrame(gem.id, sp.index);
         sprite.setScale(scale.x, scale.y);

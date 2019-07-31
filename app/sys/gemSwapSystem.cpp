@@ -50,12 +50,11 @@ void updateGemSwap(context& c, int ms) {
 
         if (x_ok or y_ok) {
             // 移动完成
-            entity.reset<GemSwaping>(e);
-            entity.assign_or_replace<GemSwapFinish>(e);
             Tile temp = tile;
             tile.x = end.x; tile.y = end.y;
             end.x = temp.x; end.y = temp.y;
-            c.level.set(Level::TILE, tile.x, tile.y, e);
+            entity.reset<GemSwaping>(e);
+            entity.assign_or_replace<GemSwapFinish>(e);
         }
     });
 }
@@ -102,20 +101,11 @@ void updateGemSwapReverse(context& c, int ms) {
 
         if (x_ok or y_ok) {
             // 移动完成
-            entity.reset<GemReverseSwaping>(e);
-            entity.reset<TileEnd>(e);
             Tile temp = tile;
             tile.x = end.x; tile.y = end.y;
             end.x = temp.x; end.y = temp.y;
-            c.level.set(Level::TILE, tile.x, tile.y, e);
+            entity.reset<GemReverseSwaping>(e);
+            entity.reset<TileEnd>(e);
         }
-    });
-}
-
-void updateGemSwapEnd(context& c) {
-    auto& entity = c.entity;
-    entity.view<GemSwapFinish>().each([&](auto e, GemSwapFinish const& finish) {
-        entity.reset<GemSwapFinish>(e);
-        c.check_link = true;
     });
 }

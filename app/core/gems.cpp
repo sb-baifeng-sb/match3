@@ -2,7 +2,7 @@
 // Created by baifeng on 2019-07-29.
 //
 
-#include "gems.h"
+#include "Gems.h"
 
 Gems::Gems() {
     int xpos[ID_MAX] = {0, 64, 128, 192, 256, 320, 384};

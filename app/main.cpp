@@ -45,11 +45,9 @@ int main() {
     // 初始化关卡和画面
     srand(time(nullptr));
     app.level.output([&](Level::LAYER_INDEX index, int x, int y, int id) {
-        //printf("x=%d y=%d id=%d\n", x, y, id);
         float _x = x * Gems::GEM_WIDTH + Gems::GEM_WIDTH*0.5f;
         float _y = y * Gems::GEM_HEIGHT + Gems::GEM_HEIGHT*0.5f;
         auto e = createGem(app.entity, id, Position{_x, _y}, Tile{x, y});
-        app.level.set(index, x, y, e);
     });
 
     sf::Clock clock;
@@ -84,14 +82,16 @@ int main() {
         });
 
         auto ms = clock.restart().asMilliseconds();
+
         updateGemSwap(app, ms); // 处理宝石交换
         updateGemSwapReverse(app, ms); // 处理宝石位置还原
         updateGemsSelectAni(app, ms); // 处理点击宝石的动画
         checkSwapGemLink(app); // 宝石交换后检查是否连接，无连接进行复位
-        updateGemSwapEnd(app); // 处理宝石交换后的消除操作
+
         gemFallingSystem(app, ms); // 处理宝石下落
         updateIndeadGems(app, ms); // 处理宝石消除效果
         updateDeadGems(app); // 处理消除后的逻辑
+        checkGemLink(app); // 检查是否有宝石可以消除
 
         app.render.begin();
         renderGems(app); // 绘制关卡

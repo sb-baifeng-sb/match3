@@ -2,55 +2,21 @@
 // Created by baifeng on 2019-07-28.
 //
 
-#include "level.h"
+#include "Level.h"
 
 #define MAP_INDEX(x, y, w) (y*w+x)
 
 Level::Level():w(0), h(0), max_id(0) {
-    this->layer(FLOOR).clear();
-    this->layer(TILE).clear();
-}
-
-void Level::clear() {
-    this->layer(FLOOR).clear();
-    this->layer(TILE).clear();
 }
 
 void Level::resize(int w, int h) {
     this->w = w;
     this->h = h;
     int size = w * h;
-    this->clear();
-    for (int i = 0; i < size; ++i) {
-        this->layer(LAYER_INDEX::FLOOR).push_back(entt::null);
-        this->layer(LAYER_INDEX::TILE).push_back(entt::null);
-    }
 }
 
 void Level::setMaxId(int id) {
     this->max_id = id;
-}
-
-void Level::set(LAYER_INDEX index, int x, int y, entt::entity e) {
-    if (x < 0 || x >= this->w || y < 0 || y >= this->h) {
-        return;
-    }
-    this->layer(index)[MAP_INDEX(x, y, this->w)] = e;
-}
-
-entt::entity Level::get(LAYER_INDEX index, int x, int y) const {
-    if (x < 0 || x >= this->w || y < 0 || y >= this->h) {
-        return entt::null;
-    }
-    return this->layer(index)[MAP_INDEX(x, y, this->w)];
-}
-
-Level::Layer& Level::layer(LAYER_INDEX index) {
-    return mLayers[int(index)];
-}
-
-Level::Layer const& Level::layer(LAYER_INDEX index) const {
-    return mLayers[int(index)];
 }
 
 void Level::loadlevel(std::string const& fileName) {
@@ -79,4 +45,8 @@ int Level::getMapWidth() const {
 
 int Level::getMapHeight() const {
     return this->h;
+}
+
+int Level::getMapSize() const {
+    return this->w * this->h;
 }
