@@ -30,12 +30,17 @@ void onMouseMoved(context& c, int x, int y) {
     auto gem_map = getLevelGemMap(c);
     entity.view<GemSwapStandby, Tile>().each([&](auto e, GemSwapStandby const& standby, Tile const& tile) {
 
-        if (tile.x == tile_x && tile.y == tile_y) {
-            return;
-        }
-
         auto next = gem_map[tile_x][tile_y];
         if (next == entt::null) {
+            return;
+        }
+        bool can_swap = false;
+        if (tile_x == tile.x && abs(tile_y-tile.y) == 1) {
+            can_swap = true;
+        } else if (tile_y == tile.y && abs(tile_x-tile.x) == 1) {
+            can_swap = true;
+        }
+        if (!can_swap) {
             return;
         }
         if (entity.has<Falling>(next) || entity.has<Falling>(e)) {
@@ -50,15 +55,7 @@ void onMouseMoved(context& c, int x, int y) {
         if (entity.has<GemReverseSwaping>(next) || entity.has<GemReverseSwaping>(e)) {
             return;
         }
-        bool can_swap = false;
-        if (tile_x == tile.x && abs(tile_y-tile.y) == 1) {
-            can_swap = true;
-        } else if (tile_y == tile.y && abs(tile_x-tile.x) == 1) {
-            can_swap = true;
-        }
-        if (!can_swap) {
-            return;
-        }
+
         entity.reset<GemSwapStandby>(e);
         entity.assign_or_replace<TileEnd>(e, TileEnd{tile_x, tile_y});
         entity.assign<GemSwaping>(e);

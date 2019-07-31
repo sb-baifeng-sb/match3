@@ -39,7 +39,7 @@ int main() {
     app.input.setWindow(app.render.window());
     app.gems.loadGems(assets("gems.png"));
     app.level.resize(12, 12);
-    app.level.setMaxId(5); // 关卡最多5个种类的宝石
+    app.level.setMaxId(3); // 关卡最多3个种类的宝石
     app.check_link = true;
 
     // 初始化关卡和画面

@@ -58,7 +58,7 @@ void gemFallingSystem(context& c, int ms) {
                 //printf("[%d, %d] [%d, %d]\n", x, y, tile.x, tile.y);
                 if (tile.y != y) {
                     entity.assign_or_replace<Falling>(e);
-                    entity.assign_or_replace<TileEnd>(e, TileEnd{});
+                    entity.assign_or_replace<TileEnd>(e, TileEnd{x, y});
                 }
             }
         }
